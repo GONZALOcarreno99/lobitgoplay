@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel del creador — LobitgoPlay</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="mock-banner">MAQUETA DE DEMOSTRACIÓN — Datos de ejemplo, sin backend real todavía</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="64" cy="70" r="34" fill="#8a6a4a"/>
+          <polygon points="38,46 50,20 62,50" fill="#8a6a4a"/>
+          <polygon points="90,46 78,20 66,50" fill="#8a6a4a"/>
+        </svg>
+      </span>
+      LobitgoPlay
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Explorar</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="index.html">Cerrar sesión</a>
+    </div>
+  </div>
+</header>
+
+<div class="container panel-layout">
+  <nav class="panel-nav">
+    <a class="active" href="panel-creador.html">Mis juegos</a>
+    <a href="#" onclick="document.getElementById('subir').scrollIntoView({behavior:'smooth'});return false;">Subir juego</a>
+    <a href="#">Estadísticas</a>
+    <a href="#">Mi perfil</a>
+    <a href="panel-admin.html">Panel administrador →</a>
+  </nav>
+
+  <div>
+    <div class="kpi-row">
+      <div class="kpi"><b>1</b><span>Juegos publicados</span></div>
+      <div class="kpi"><b>1</b><span>Descargas totales</span></div>
+      <div class="kpi"><b>4.6★</b><span>Valoración promedio</span></div>
+      <div class="kpi"><b>S/ 0</b><span>Ingresos este mes</span></div>
+    </div>
+
+    <div class="panel-card">
+      <h3>Mis juegos</h3>
+      <table class="mock-table">
+        <tr><th>Juego</th><th>Estado</th><th>Descargas</th><th>Valoración</th><th></th></tr>
+        <tr>
+          <td>Lobitgo</td>
+          <td><span class="status-pill ok">Publicado</span></td>
+          <td>1</td>
+          <td>4.6★</td>
+          <td><a href="juegos/lobitgo/index.html">Ver página</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="panel-card" id="subir">
+      <h3>Subir nuevo juego</h3>
+      <form onsubmit="event.preventDefault(); alert('Maqueta de demostración: la subida real de archivos se implementará junto con el backend (ver Informe, sección 8.1).');">
+        <div class="field">
+          <label>Nombre del juego</label>
+          <input type="text" placeholder="Ej: Ruinas de Arena">
+        </div>
+        <div class="field">
+          <label>Descripción corta</label>
+          <textarea placeholder="De qué trata tu juego..."></textarea>
+        </div>
+        <div class="field">
+          <label>Portada</label>
+          <input type="file" accept="image/*">
+        </div>
+        <div class="field">
+          <label>Archivo del juego (.zip exportado de Godot)</label>
+          <input type="file" accept=".zip">
+        </div>
+        <button class="btn btn-primary" type="submit">Publicar juego</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  LobitgoPlay — Universidad Tecnológica del Perú · 2026
+</footer>
+
+</body>
+</html>

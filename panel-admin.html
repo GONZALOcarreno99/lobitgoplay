@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel administrador — LobitgoPlay</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="mock-banner">MAQUETA DE DEMOSTRACIÓN — Datos de ejemplo, sin backend real todavía</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="64" cy="70" r="34" fill="#8a6a4a"/>
+          <polygon points="38,46 50,20 62,50" fill="#8a6a4a"/>
+          <polygon points="90,46 78,20 66,50" fill="#8a6a4a"/>
+        </svg>
+      </span>
+      LobitgoPlay
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Explorar</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="index.html">Cerrar sesión</a>
+    </div>
+  </div>
+</header>
+
+<div class="container panel-layout">
+  <nav class="panel-nav">
+    <a href="panel-creador.html">← Panel del creador</a>
+    <a class="active" href="panel-admin.html">Juegos publicados</a>
+    <a href="#">Usuarios</a>
+    <a href="#">Game Jams</a>
+    <a href="#">Reportes</a>
+  </nav>
+
+  <div>
+    <div class="kpi-row">
+      <div class="kpi"><b>1</b><span>Juegos publicados</span></div>
+      <div class="kpi"><b>1</b><span>Creadores activos</span></div>
+      <div class="kpi"><b>0</b><span>Reportes pendientes</span></div>
+      <div class="kpi"><b>S/ 0</b><span>Comisiones del mes</span></div>
+    </div>
+
+    <div class="panel-card">
+      <h3>Moderación de juegos</h3>
+      <table class="mock-table">
+        <tr><th>Juego</th><th>Creador</th><th>Estado</th><th>Acción</th></tr>
+        <tr>
+          <td>Lobitgo</td>
+          <td>Mauro Carreño</td>
+          <td><span class="status-pill ok">Aprobado</span></td>
+          <td><a href="juegos/lobitgo/index.html">Ver</a></td>
+        </tr>
+        <tr>
+          <td>Ruinas de Arena</td>
+          <td>Comunidad LobitgoPlay</td>
+          <td><span class="status-pill pending">En revisión</span></td>
+          <td><a href="#" onclick="alert('Maqueta de demostración: la moderación real llegará con el backend.');return false;">Revisar</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="panel-card">
+      <h3>Game Jam institucional</h3>
+      <p style="color:var(--text-dim); font-size:13px;">Organiza un concurso para tu instituto o colegio: página del evento, registro de participantes, subida de juegos, votación y certificados (ver Informe, sección 7.6).</p>
+      <button class="btn btn-primary" onclick="alert('Maqueta de demostración: la creación de Game Jams se habilitará en la fase 2.');">+ Crear Game Jam</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  LobitgoPlay — Universidad Tecnológica del Perú · 2026
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta — LobitgoPlay</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="mock-banner">MAQUETA DE DEMOSTRACIÓN — Este formulario es visual, aún no guarda datos en una base real</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="64" cy="70" r="34" fill="#8a6a4a"/>
+          <polygon points="38,46 50,20 62,50" fill="#8a6a4a"/>
+          <polygon points="90,46 78,20 66,50" fill="#8a6a4a"/>
+        </svg>
+      </span>
+      LobitgoPlay
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Explorar</a>
+    </nav>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <h2>Crear cuenta</h2>
+  <p class="sub">Únete como jugador o como creador de videojuegos.</p>
+  <form onsubmit="event.preventDefault(); window.location.href='panel-creador.html';">
+    <div class="field">
+      <label>Nombre</label>
+      <input type="text" placeholder="Tu nombre" required>
+    </div>
+    <div class="field">
+      <label>Correo electrónico</label>
+      <input type="email" placeholder="tu@correo.com" required>
+    </div>
+    <div class="field">
+      <label>Contraseña</label>
+      <input type="password" placeholder="••••••••" required>
+    </div>
+    <div class="field">
+      <label>Tipo de cuenta</label>
+      <select>
+        <option>Jugador</option>
+        <option selected>Creador</option>
+        <option>Institución educativa</option>
+      </select>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Crear cuenta</button>
+  </form>
+  <div class="switch-auth">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></div>
+</div>
+
+<footer>
+  LobitgoPlay — Universidad Tecnológica del Perú · 2026
+</footer>
+
+</body>
+</html>

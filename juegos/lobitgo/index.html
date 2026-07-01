@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lobitgo — LobitgoPlay</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="mock-banner">MAQUETA DE DEMOSTRACIÓN — El juego de abajo es 100% real y jugable (Godot 4 exportado a Web)</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="64" cy="70" r="34" fill="#8a6a4a"/>
+          <polygon points="38,46 50,20 62,50" fill="#8a6a4a"/>
+          <polygon points="90,46 78,20 66,50" fill="#8a6a4a"/>
+        </svg>
+      </span>
+      LobitgoPlay
+    </a>
+    <nav class="nav-links">
+      <a href="../../index.html">Explorar</a>
+      <a href="../../panel-admin.html">Game Jams</a>
+      <a href="../../panel-creador.html">Para creadores</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="../../login.html">Iniciar sesión</a>
+      <a class="btn btn-primary" href="../../registro.html">Publicar mi juego</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="game-hero">
+    <div>
+      <div class="player-frame">
+        <iframe src="web/index.html" allow="autoplay" title="Lobitgo jugable"></iframe>
+      </div>
+      <div class="controls-box" style="margin-top:14px;">
+        <b>Controles:</b>
+        <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> o flechas para moverte ·
+        recoge monedas antes de que se acabe el tiempo · los power-ups (rombo celeste) suman +5s · evita las rocas grises.
+      </div>
+    </div>
+    <div class="game-info">
+      <h1>Lobitgo</h1>
+      <div class="author">por Mauro Carreño · publicado en LobitgoPlay</div>
+      <p class="desc">
+        Lobitgo es un lobo explorador que llega a unas ruinas en Egipto buscando tesoros antiguos.
+        Recorre el desierto recolectando monedas y power-ups antes de que se acabe el tiempo,
+        mientras esquiva las rocas del desierto. Cada nivel completado aparece con más monedas por recoger.
+      </p>
+      <div class="stat-row">
+        <div><b>1</b>Descargas de demo</div>
+        <div><b>4.6★</b>Valoración</div>
+        <div><b>Godot 4</b>Motor</div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="#" onclick="document.querySelector('iframe').scrollIntoView({behavior:'smooth'});return false;">▶ Jugar ahora</a>
+        <a class="btn btn-ghost" href="web/" download>⬇ Descargar versión offline (HTML5)</a>
+      </div>
+      <span class="badge">Gratis</span>
+    </div>
+  </div>
+
+  <div class="comments">
+    <div class="section-title">Comentarios y valoraciones</div>
+
+    <div class="comment">
+      <div class="avatar"></div>
+      <div class="comment-body">
+        <b>Ana R.</b> <span class="stars">★★★★★</span>
+        <p>Muy adictivo para lo simple que es, me gustó el tema egipcio.</p>
+      </div>
+    </div>
+    <div class="comment">
+      <div class="avatar"></div>
+      <div class="comment-body">
+        <b>Diego M.</b> <span class="stars">★★★★☆</span>
+        <p>Buen primer juego, le faltaría más niveles pero cumple.</p>
+      </div>
+    </div>
+
+    <form class="comment-form" onsubmit="event.preventDefault(); alert('Maqueta de demostración: los comentarios se guardarán cuando exista backend real.');">
+      <input type="text" placeholder="Escribe un comentario...">
+      <button class="btn btn-primary" type="submit">Comentar</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  LobitgoPlay — Miniproyecto de plataforma de publicación de videojuegos interactivos · Universidad Tecnológica del Perú · 2026
+</footer>
+
+</body>
+</html>
