@@ -152,7 +152,6 @@ header.site-header {
   justify-content: center;
   position: relative;
 }
-.card-cover.dim { filter: grayscale(0.6) brightness(0.6); }
 .card-cover .pyramid {
   width: 0; height: 0;
   border-left: 26px solid transparent;
@@ -178,7 +177,6 @@ header.site-header {
   color: var(--accent);
   margin-top: 8px;
 }
-.badge.soon { color: var(--text-dim); }
 
 /* Game detail */
 .game-hero {
@@ -315,33 +313,6 @@ header.site-header {
   color: var(--text);
 }
 
-/* Comments */
-.comments { padding: 10px 0 60px; }
-.comment {
-  display: flex;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid #3a2f22;
-}
-.avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--sand-dark);
-  flex: none;
-}
-.comment-body b { font-size: 13px; }
-.comment-body p { margin: 4px 0 0; font-size: 13px; color: var(--text-dim); }
-.stars { color: var(--accent-2); font-size: 13px; }
-
-.comment-form { display: flex; gap: 10px; margin-top: 18px; }
-.comment-form input {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid #4a3d2c;
-  background: var(--panel-2);
-  color: var(--text);
-}
-
 /* Forms (login/registro) */
 .auth-wrap {
   max-width: 380px;
@@ -367,14 +338,6 @@ header.site-header {
 .field textarea { min-height: 90px; resize: vertical; }
 .switch-auth { text-align: center; font-size: 13px; color: var(--text-dim); margin-top: 14px; }
 .switch-auth a { color: var(--accent-2); font-weight: 600; }
-
-.mock-banner {
-  background: #3a2f22;
-  color: var(--accent);
-  font-size: 12px;
-  text-align: center;
-  padding: 6px 0;
-}
 
 /* Panels */
 .panel-layout { display: grid; grid-template-columns: 210px 1fr; gap: 26px; padding: 30px 0 60px; }
