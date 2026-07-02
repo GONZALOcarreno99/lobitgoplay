@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lobitgo — LobitgoPlay</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Ccircle cx='64' cy='70' r='34' fill='%238a6a4a'/%3E%3Cpolygon points='38,46 50,20 62,50' fill='%238a6a4a'/%3E%3Cpolygon points='90,46 78,20 66,50' fill='%238a6a4a'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
@@ -38,7 +39,12 @@
   <div class="game-hero">
     <div>
       <div class="player-frame">
-        <iframe src="web/index.html" allow="autoplay" title="Lobitgo jugable"></iframe>
+        <button type="button" class="player-preview" id="playPreview" aria-label="Jugar Lobitgo">
+          <img src="../../img/lobitgo-titulo.png" alt="Pantalla de inicio de Lobitgo">
+          <span class="preview-overlay">
+            <span class="play-button">▶ Jugar</span>
+          </span>
+        </button>
       </div>
       <div class="controls-box" style="margin-top:14px;">
         <b>Controles:</b>
@@ -60,7 +66,7 @@
         <div><b>Godot 4</b>Motor</div>
       </div>
       <div class="actions">
-        <a class="btn btn-primary" href="#" onclick="document.querySelector('iframe').scrollIntoView({behavior:'smooth'});return false;">▶ Jugar ahora</a>
+        <a class="btn btn-primary" href="#" id="playNowBtn">▶ Jugar ahora</a>
         <a class="btn btn-ghost" href="web/" download>⬇ Descargar versión offline (HTML5)</a>
       </div>
       <span class="badge">Gratis</span>
@@ -92,9 +98,66 @@
   </div>
 </div>
 
+<div class="game-modal" id="gameModal" role="dialog" aria-modal="true" aria-label="Lobitgo jugable">
+  <div class="game-modal-box">
+    <button type="button" class="game-modal-close" id="closeModalBtn" aria-label="Cerrar">×</button>
+    <div class="game-modal-frame">
+      <iframe id="gameFrame" src="" allow="autoplay" title="Lobitgo jugable"></iframe>
+    </div>
+  </div>
+</div>
+
 <footer>
   LobitgoPlay — Miniproyecto de plataforma de publicación de videojuegos interactivos · Universidad Tecnológica del Perú · 2026
 </footer>
+
+<script>
+(function () {
+  var modal = document.getElementById('gameModal');
+  var frame = document.getElementById('gameFrame');
+  var GAME_SRC = 'web/index.html';
+
+  function handleEscFromFrame(e) {
+    if (e.key === 'Escape') closeGame();
+  }
+
+  function openGame() {
+    frame.src = GAME_SRC;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGame() {
+    modal.classList.remove('open');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // El juego (iframe) es mismo-origen, pero al tomar foco de teclado deja de
+  // recibir el ESC el documento padre. Se engancha también dentro del iframe
+  // para poder cerrar el modal aunque el foco esté sobre el juego.
+  frame.addEventListener('load', function () {
+    try {
+      frame.contentWindow.document.addEventListener('keydown', handleEscFromFrame);
+    } catch (err) { /* cross-origin de respaldo: se ignora */ }
+  });
+
+  document.getElementById('playPreview').addEventListener('click', openGame);
+  document.getElementById('playNowBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+    openGame();
+  });
+  document.getElementById('closeModalBtn').addEventListener('click', closeGame);
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeGame();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeGame();
+  });
+})();
+</script>
 
 </body>
 </html>
