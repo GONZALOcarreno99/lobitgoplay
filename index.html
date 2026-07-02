@@ -33,35 +33,104 @@
   </div>
 </header>
 
-<section class="hero container">
-  <span class="hero-tag">Hecho con Godot</span>
-  <h1>Publica y juega videojuegos indie hechos en Godot</h1>
-  <p>La vitrina en español para estudiantes y desarrolladores independientes de Perú y Latinoamérica. Sube tu juego, muéstralo con tráiler y capturas, y deja que lo jueguen directo en el navegador.</p>
-</section>
-
 <div class="container">
-  <div class="section-title">
-    Catálogo <span class="hint">1 juego jugable en el navegador</span>
+  <div class="game-hero">
+    <div>
+      <div class="player-frame">
+        <button type="button" class="player-preview" id="playPreview" aria-label="Jugar Lobitgo">
+          <img src="img/lobitgo-titulo.png" alt="Pantalla de inicio de Lobitgo">
+          <span class="preview-overlay">
+            <span class="play-button">▶ Jugar</span>
+          </span>
+        </button>
+      </div>
+      <div class="controls-box" style="margin-top:14px;">
+        <b>Controles:</b>
+        <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> o flechas para moverte · <kbd>MAYÚS</kbd> para un dash rápido (te vuelve intocable un instante, ideal para esquivar rocas) ·
+        recoge monedas antes de que se acabe el tiempo · los power-ups (rombo celeste) suman +5s · evita las rocas grises — desde el nivel 2 algunas se tiñen de rojo y te empiezan a cazar.
+      </div>
+    </div>
+    <div class="game-info">
+      <h1>Lobitgo</h1>
+      <div class="author">por Mauro Carreño · publicado en LobitgoPlay</div>
+      <p class="desc">
+        Lobitgo es un lobo explorador que llega a unas ruinas en Egipto buscando tesoros antiguos.
+        Recorre el desierto recolectando monedas y power-ups antes de que se acabe el tiempo,
+        mientras esquiva las rocas del desierto. Cada nivel completado aparece con más monedas por recoger.
+      </p>
+      <div class="stat-row">
+        <div><b>Godot 4</b>Motor</div>
+        <div><b>Web (HTML5)</b>Exportación</div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="#" id="playNowBtn">▶ Jugar ahora</a>
+        <a class="btn btn-ghost" href="juegos/lobitgo/web/" download>⬇ Descargar versión offline (HTML5)</a>
+      </div>
+      <span class="badge">Gratis</span>
+    </div>
   </div>
-  <div class="grid">
+</div>
 
-    <a class="card" href="juegos/lobitgo/index.html">
-      <div class="card-cover">
-        <img src="img/lobitgo-cover.png" alt="Captura de gameplay de Lobitgo" loading="lazy">
-      </div>
-      <div class="card-body">
-        <div class="card-title">Lobitgo</div>
-        <div class="card-meta"><span>Mauro Carreño</span><span>Gratis</span></div>
-        <span class="badge">Jugable en navegador</span>
-      </div>
-    </a>
-
+<div class="game-modal" id="gameModal" role="dialog" aria-modal="true" aria-label="Lobitgo jugable">
+  <div class="game-modal-box">
+    <button type="button" class="game-modal-close" id="closeModalBtn" aria-label="Cerrar">×</button>
+    <div class="game-modal-frame">
+      <iframe id="gameFrame" src="" allow="autoplay" title="Lobitgo jugable"></iframe>
+    </div>
   </div>
 </div>
 
 <footer>
   LobitgoPlay — Miniproyecto de plataforma de publicación de videojuegos interactivos · Universidad Tecnológica del Perú · 2026
 </footer>
+
+<script>
+(function () {
+  var modal = document.getElementById('gameModal');
+  var frame = document.getElementById('gameFrame');
+  var GAME_SRC = 'juegos/lobitgo/web/index.html';
+
+  function handleEscFromFrame(e) {
+    if (e.key === 'Escape') closeGame();
+  }
+
+  function openGame() {
+    frame.src = GAME_SRC;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGame() {
+    modal.classList.remove('open');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // El juego (iframe) es mismo-origen, pero al tomar foco de teclado deja de
+  // recibir el ESC el documento padre. Se engancha también dentro del iframe
+  // para poder cerrar el modal aunque el foco esté sobre el juego.
+  frame.addEventListener('load', function () {
+    try {
+      frame.contentWindow.document.addEventListener('keydown', handleEscFromFrame);
+    } catch (err) { /* cross-origin de respaldo: se ignora */ }
+  });
+
+  document.getElementById('playPreview').addEventListener('click', openGame);
+  document.getElementById('playNowBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+    openGame();
+  });
+  document.getElementById('closeModalBtn').addEventListener('click', closeGame);
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeGame();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeGame();
+  });
+})();
+</script>
 
 </body>
 </html>
