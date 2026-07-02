@@ -21,15 +21,6 @@
       </span>
       LobitgoPlay
     </a>
-    <nav class="nav-links">
-      <a href="index.html">Explorar</a>
-      <a href="panel-admin.html">Game Jams</a>
-      <a href="panel-creador.html">Para creadores</a>
-    </nav>
-    <div class="nav-actions">
-      <a class="btn btn-ghost" href="login.html">Iniciar sesión</a>
-      <a class="btn btn-primary" href="registro.html">Publicar mi juego</a>
-    </div>
   </div>
 </header>
 
@@ -68,6 +59,17 @@
       </div>
       <span class="badge">Gratis</span>
     </div>
+  </div>
+
+  <div class="panel-card" id="scoreboardCard">
+    <h3>Últimos puntajes</h3>
+    <p class="scoreboard-empty" id="scoreboardEmpty">Todavía no hay partidas registradas en este navegador. ¡Juega para aparecer aquí!</p>
+    <table class="mock-table" id="scoreboardTable" style="display:none;">
+      <thead>
+        <tr><th>Nombre</th><th>Puntaje</th><th>Nivel</th><th>Cuándo</th></tr>
+      </thead>
+      <tbody id="scoreboardBody"></tbody>
+    </table>
   </div>
 </div>
 
@@ -129,6 +131,79 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeGame();
   });
+})();
+</script>
+
+<script>
+(function () {
+  // Tabla de puntajes local: sin backend real, se guarda en este navegador
+  // (localStorage), igual que el mejor puntaje que ya guarda el propio juego.
+  var STORAGE_KEY = 'lobitgo_scores';
+  var LAST_NAME_KEY = 'lobitgo_last_name';
+  var MAX_ENTRIES = 10;
+
+  var emptyMsg = document.getElementById('scoreboardEmpty');
+  var table = document.getElementById('scoreboardTable');
+  var body = document.getElementById('scoreboardBody');
+
+  function loadScores() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function saveScores(scores) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(scores));
+  }
+
+  function renderScores() {
+    var scores = loadScores();
+    if (scores.length === 0) {
+      emptyMsg.style.display = '';
+      table.style.display = 'none';
+      return;
+    }
+    emptyMsg.style.display = 'none';
+    table.style.display = '';
+    body.innerHTML = '';
+    scores.forEach(function (entry) {
+      var row = document.createElement('tr');
+      row.innerHTML =
+        '<td>' + entry.name + '</td>' +
+        '<td>' + entry.score + '</td>' +
+        '<td>' + entry.level + '</td>' +
+        '<td>' + entry.when + '</td>';
+      body.appendChild(row);
+    });
+  }
+
+  function addScore(score, level) {
+    var lastName = localStorage.getItem(LAST_NAME_KEY) || '';
+    var name = window.prompt('¡Partida terminada! ¿Cómo te llamas para el marcador?', lastName);
+    if (name === null) return; // el jugador canceló, no se registra
+    name = name.trim().slice(0, 24) || 'Jugador anónimo';
+    localStorage.setItem(LAST_NAME_KEY, name);
+
+    var scores = loadScores();
+    scores.unshift({
+      name: name,
+      score: score,
+      level: level,
+      when: new Date().toLocaleString('es-PE', { dateStyle: 'short', timeStyle: 'short' })
+    });
+    scores = scores.slice(0, MAX_ENTRIES);
+    saveScores(scores);
+    renderScores();
+  }
+
+  window.addEventListener('message', function (event) {
+    if (!event.data || event.data.source !== 'lobitgo') return;
+    addScore(event.data.score, event.data.level);
+  });
+
+  renderScores();
 })();
 </script>
 
